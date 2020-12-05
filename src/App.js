@@ -1,22 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import {useSelector, useDispatch} from 'react-redux';
+import {addCounter, decreaseCounter} from './store/actions/action';
 
 function App() {
+  const count = useSelector(state => state.count);
+  const dispatcher = useDispatch();
+
+  const add = () => dispatcher(addCounter());
+  const decrease = () => dispatcher(decreaseCounter());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        <h3>Counter with Redux Hooks {count}</h3>
+        <button onClick={add}>ADD +1</button>
+        <button onClick={decrease}>DECREASE -1</button>
       </header>
     </div>
   );
